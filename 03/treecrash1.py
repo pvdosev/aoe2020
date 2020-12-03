@@ -28,6 +28,18 @@ def get_args():
 
 
 # --------------------------------------------------
+def sleigh(field, slope, vertical):
+    i = 0
+    treecount = 0
+    for line in field[::vertical]:
+        if line[i % len(line)] == "#":
+            treecount += 1
+        i += slope
+
+    return treecount
+
+
+# --------------------------------------------------
 def main():
     """Get list of strings from input file
     If you start from the top left, going 1 down and 3 right,
@@ -38,13 +50,14 @@ def main():
     # strings are iterable, so no need for special processing
     snowyfield = args.file.read().splitlines()
 
-    i = 0
-    treecount = 0
-    for line in snowyfield:
-        if line[i % len(line)] == "#":
-            treecount += 1
-        i += 3
-    print(treecount)
+    # if I was less lazy I'd do this with map()
+    print(
+        sleigh(snowyfield, 1, 1)
+        * sleigh(snowyfield, 3, 1)
+        * sleigh(snowyfield, 5, 1)
+        * sleigh(snowyfield, 7, 1)
+        * sleigh(snowyfield, 1, 2)
+    )
 
 
 # --------------------------------------------------

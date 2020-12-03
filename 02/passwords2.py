@@ -30,8 +30,8 @@ def get_args():
 # --------------------------------------------------
 def main():
     """Get passwords and requirements from file,
-    evaluate passwords based on reqs,
-    return number of wrong passwords"""
+    characters in positions passmax xor passmin
+    must be equal to letter"""
 
     args = get_args()
 
@@ -52,13 +52,9 @@ def main():
     finalcount = 0
 
     for password in passwords:
-        if (
-            password.count(letters[i]) <= passmax[i]
-            and password.count(letters[i]) >= passmin[i]
+        if (password[passmin[i] - 1] == letters[i]) ^ (
+            password[passmax[i] - 1] == letters[i]
         ):
-            print(
-                f"Word: {password} Letter: {letters[i]} Min/max: {passmin[i]}, {passmax[i]} \n {inputlist[i]}"
-            )
             finalcount += 1
 
         i += 1

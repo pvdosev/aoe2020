@@ -34,7 +34,8 @@ def main():
 
     args = get_args()
 
-    answers = [entry.split("\n") for entry in args.file.read().split("\n\n")]
+    answers = [entry.rstrip().split("\n") for entry in args.file.read().split("\n\n")]
+    # Find set intersection using list expansion
     print(answers)
 
 

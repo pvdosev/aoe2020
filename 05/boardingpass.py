@@ -4,7 +4,6 @@ The first one was easy, not this one D:
 """
 
 import argparse
-import re
 
 # --------------------------------------------------
 def get_args():
@@ -49,7 +48,7 @@ def main():
         for count, char in enumerate(vertical):
             if char == "F":
                 highbound -= pow(2, 6 - count)
-            if char == "B": 
+            if char == "B":
                 lowbound += pow(2, 6 - count)
 
         for count, char in enumerate(horizontal):
@@ -58,13 +57,13 @@ def main():
             if char == "R":
                 leftbound += pow(2, 2 - count)
 
+        currentid = highbound * 8 + rightbound  # given by puzzle definition
 
-        currentid = highbound * 8 + rightbound
-
-        if (currentid > highestid):
+        if currentid > highestid:
             highestid = currentid
 
     print(highestid)
+
 
 # --------------------------------------------------
 if __name__ == "__main__":

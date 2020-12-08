@@ -36,6 +36,7 @@ def main():
 
     currentid = 0
     highestid = 0
+    allseats = [row * 8 + column for row in range(128) for column in range(8)]
 
     passes = args.file.read().split()
     for doc in passes:
@@ -60,11 +61,9 @@ def main():
 
 
         currentid = highbound * 8 + rightbound
+        allseats.remove(currentid)
 
-        if (currentid > highestid):
-            highestid = currentid
-
-    print(highestid)
+    print(allseats)
 
 # --------------------------------------------------
 if __name__ == "__main__":

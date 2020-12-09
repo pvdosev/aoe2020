@@ -29,12 +29,17 @@ def get_args():
 
 # --------------------------------------------------
 def main():
-    """List of lists of repeating chars, separated by 2 newlines
-    get all non repeating characters per list of lists, sum number"""
+    """List of repeating characters, separated by 2 newlines
+    get all unique characters per list and sum them together"""
 
     args = get_args()
 
-    answers = [entry.split("\n") for entry in args.file.read().split("\n\n")]
+    answers = [set(entry.replace('\n', '')) for entry in args.file.read().split("\n\n")]
+    total = 0
+
+    for entry in answers:
+        total += len(entry)
+
     print(answers)
 
 

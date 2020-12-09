@@ -35,8 +35,19 @@ def main():
     args = get_args()
 
     answers = [entry.rstrip().split("\n") for entry in args.file.read().split("\n\n")]
+
+    for answerlist in answers:
+        for count, string in enumerate(answerlist):
+            answerlist[count] = set(answerlist[count])
+
     # Find set intersection using list expansion
-    print(answers)
+    final = [set.intersection(*setlist) for setlist in answers]
+
+    sum = 0
+    for each in final:
+        sum += len(each)
+
+    print(sum)
 
 
 # --------------------------------------------------
